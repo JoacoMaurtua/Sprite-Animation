@@ -23,8 +23,8 @@ const spriteWidth = 575; // ancho/numCols
 const spriteHeight = 523; //alto/numFil
 
 //valores para cambiar de sprite
-let frameX = 0;
-let frameY = 3; //valor a cambiar
+//let frameX = 0;
+//let frameY = 3; //valor a cambiar
 
 //relantizar la animacion
 let gameFrame = 0;
@@ -40,12 +40,47 @@ const animationStates = [
   {
     name:"jump",
     frames:7
-  }
+  },
 
-  /* {
-    name:"idle",
+  {
+    name:"fall",
     frames:7
-  }, */
+  },
+  
+  {
+    name:"run",
+    frames:9
+  }, 
+
+  {
+    name:"dizzy",
+    frames:11
+  }, 
+
+  {
+    name:"sit",
+    frames:5
+  }, 
+
+  {
+    name:"roll",
+    frames:7
+  }, 
+
+  {
+    name:"bite",
+    frames:7
+  }, 
+
+  {
+    name:"ko",
+    frames:12
+  }, 
+
+  {
+    name:"getHit",
+    frames:4
+  }, 
 
 ]
 
@@ -68,13 +103,17 @@ animationStates.forEach((state,index) => {
 
 console.log(spriteAnimations);
 
+//Estado de animacion:
+let playerState = "run";
+
 const animate =()=>{
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   //ctx.fillRect(50,50,100,100);
   //forma2:
-  let position = Math.floor(gameFrame/staggerFrames) % 6; //recorrer los sprites horizontales
-  frameX = spriteWidth * position;
-  ctx.drawImage(playerImage, frameX , frameY * spriteHeight,spriteWidth,spriteHeight,0, 0, spriteWidth,spriteHeight);
+  let position = Math.floor(gameFrame/staggerFrames) % spriteAnimations[playerState].loc.length; //recorrer los sprites horizontales
+  let frameX = spriteWidth * position;
+  let frameY = spriteAnimations[playerState].loc[position].y;
+  ctx.drawImage(playerImage, frameX , frameY ,spriteWidth,spriteHeight,0, 0, spriteWidth,spriteHeight);
 
   //Controlador de cambio de sprites
   //forma 1:
@@ -83,9 +122,6 @@ const animate =()=>{
     else frameX = 0
   } */
 
-
-
-
   gameFrame++;
   requestAnimationFrame(animate); //Que la imagen se repita automaticamente
 
@@ -93,7 +129,7 @@ const animate =()=>{
 
 animate();
 
-
+//Datos importantes:
 
 // 10 filas y 11 columnas de frames
 
