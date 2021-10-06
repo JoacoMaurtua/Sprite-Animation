@@ -19,11 +19,18 @@ const CANVAS_HEIGHT = canvas.height = 600;
 
 const playerImage = new Image(); //propiedad para insertar una imagen
 playerImage.src = 'shadow_dog.png';
+const spriteWidth = 575; // ancho/numCols
+const spriteHeight = 523; //alto/numFil
+
+//valores para cambiar de sprite
+let frameX = 4;
+let frameY = 2;
 
 
 const animate =()=>{
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  ctx.fillRect(50,50,100,100);
+  //ctx.fillRect(50,50,100,100);
+  ctx.drawImage(playerImage, frameX * spriteWidth , frameY * spriteHeight,spriteWidth,spriteHeight,0, 0, spriteWidth,spriteHeight);
   requestAnimationFrame(animate); //Que la imagen se repita automaticamente
 
 };
@@ -32,7 +39,7 @@ animate();
 
 
 
-
+// 10 filas y 11 columnas de frames
 
 // ancho --> 6876
 
