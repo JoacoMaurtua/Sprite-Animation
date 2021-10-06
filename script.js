@@ -29,6 +29,44 @@ let frameY = 3; //valor a cambiar
 //relantizar la animacion
 let gameFrame = 0;
 const staggerFrames = 4//relantizara la animacion en esa cantidad
+//contenedor de animaciones:
+const spriteAnimations = [];
+const animationStates = [
+  {
+    name:"idle",
+    frames:7
+  },
+
+  {
+    name:"jump",
+    frames:7
+  }
+
+  /* {
+    name:"idle",
+    frames:7
+  }, */
+
+]
+
+//Mapear las ubicaciones de cada sprite:
+animationStates.forEach((state,index) => {
+  let frames = {
+    loc:[],
+  }
+  for(let j = 0; j < state.frames; j++){
+    let positionX = j * spriteWidth;
+    let positionY = index * spriteHeight;
+    frames.loc.push({ //almaceno en los las ubicaicones de cada frameX
+      x: positionX,
+      y: positionY
+    })
+  };
+
+  spriteAnimations[state.name] = frames;
+});
+
+console.log(spriteAnimations);
 
 const animate =()=>{
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
