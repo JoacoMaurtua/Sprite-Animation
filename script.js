@@ -33,12 +33,21 @@ const staggerFrames = 4//relantizara la animacion en esa cantidad
 const animate =()=>{
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   //ctx.fillRect(50,50,100,100);
-  ctx.drawImage(playerImage, frameX * spriteWidth , frameY * spriteHeight,spriteWidth,spriteHeight,0, 0, spriteWidth,spriteHeight);
+  //forma2:
+  let position = Math.floor(gameFrame/staggerFrames) % 6; //recorrer los sprites horizontales
+  frameX = spriteWidth * position;
+  ctx.drawImage(playerImage, frameX , frameY * spriteHeight,spriteWidth,spriteHeight,0, 0, spriteWidth,spriteHeight);
 
-  if(gameFrame % staggerFrames == 0){
-    if(frameX < 6 ) frameX++; //6 valor a cambiar
+  //Controlador de cambio de sprites
+  //forma 1:
+  /* if(gameFrame % staggerFrames == 0){ //sera cierto cada 4 fotogramas
+    if(frameX < 7 ) frameX++; // se ejecutara cada 4 fotogramas
     else frameX = 0
-  }
+  } */
+
+
+
+
   gameFrame++;
   requestAnimationFrame(animate); //Que la imagen se repita automaticamente
 
