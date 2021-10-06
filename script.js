@@ -105,6 +105,10 @@ console.log(spriteAnimations);
 
 //Estado de animacion:
 let playerState = "run";
+const dropdown = document.getElementById('animations');
+dropdown.addEventListener('change', function(e){
+  playerState = e.target.value;
+})
 
 const animate =()=>{
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
