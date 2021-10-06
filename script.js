@@ -23,14 +23,23 @@ const spriteWidth = 575; // ancho/numCols
 const spriteHeight = 523; //alto/numFil
 
 //valores para cambiar de sprite
-let frameX = 4;
-let frameY = 2;
+let frameX = 0;
+let frameY = 3; //valor a cambiar
 
+//relantizar la animacion
+let gameFrame = 0;
+const staggerFrames = 4//relantizara la animacion en esa cantidad
 
 const animate =()=>{
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   //ctx.fillRect(50,50,100,100);
   ctx.drawImage(playerImage, frameX * spriteWidth , frameY * spriteHeight,spriteWidth,spriteHeight,0, 0, spriteWidth,spriteHeight);
+
+  if(gameFrame % staggerFrames == 0){
+    if(frameX < 6 ) frameX++; //6 valor a cambiar
+    else frameX = 0
+  }
+  gameFrame++;
   requestAnimationFrame(animate); //Que la imagen se repita automaticamente
 
 };
